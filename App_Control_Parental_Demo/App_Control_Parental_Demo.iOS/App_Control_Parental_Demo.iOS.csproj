@@ -157,4 +157,7 @@
       <Name>App_Control_Parental_Demo</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\checklock.jpg" />
+  </ItemGroup>
 </Project>
