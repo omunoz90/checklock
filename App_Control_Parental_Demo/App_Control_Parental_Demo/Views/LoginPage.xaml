@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App_Control_Parental_Demo.LoginPage">
+    <ContentPage.Content>
+        <Grid>
+            <BoxView Color="#66B2FF"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                    <Image Grid.Row="0" Source="checklock.jpg" WidthRequest="120" HeightRequest="150"  Margin="0, 50, 0, 30" Aspect="AspectFit"/>
+
+                
+                <StackLayout Grid.Row="1" Padding="30,20">
+                    <Entry x:Name="entry_Usuario" Placeholder="Usuario" PlaceholderColor="White"/>
+                    <Entry x:Name="entry_Pass" Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"/>
+                    <Button x:Name="btnLogin" Text="Iniciar sesión" BackgroundColor="White" BorderRadius="20" TextColor="Black"/>
+                    <Button x:Name="btnRegistro" Text="Registrarse" BackgroundColor="White" BorderRadius="20" TextColor="Black"/>
+                </StackLayout>               
+            
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

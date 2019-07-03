@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App_Control_Parental_Demo.Views.Registro">
+    <ContentPage.Content>
+        <Grid>
+            <BoxView Color="#66B2FF"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="1" Padding="30,20">
+                    <Label x:Name="lblInfo" Text="Información de registro" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>
+                    <Entry x:Name="entry_Nombre" Placeholder="Nombre" PlaceholderColor="White"/>
+                    <Entry x:Name="entry_SegundoNombre" Placeholder="Segundo Nombre" PlaceholderColor="White"/>
+                    <Entry x:Name="entry_ApellidoPaterno" Placeholder="Apellido Paterno" PlaceholderColor="White" />
+                    <Entry x:Name="entry_ApellidoMaterno" Placeholder="Apellido Materno" PlaceholderColor="White"/>
+                    <Entry x:Name="entry_Correo" Placeholder="Correo" PlaceholderColor="White"/>
+                    <Entry x:Name="entry_ConfirmaCorreo" Placeholder="Confirmar correo" PlaceholderColor="White"/>
+                    <Entry x:Name="entry_RegPass" Placeholder="Contraseña" PlaceholderColor="White"/>                    
+                </StackLayout>
+                <StackLayout Grid.Row="2" Padding="30,20">
+                    <Button x:Name="btnRegistrar" Text="Registrar" BackgroundColor="White" BorderRadius="20" TextColor="Black"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
