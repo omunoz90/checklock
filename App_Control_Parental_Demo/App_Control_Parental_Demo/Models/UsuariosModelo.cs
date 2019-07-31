@@ -11,26 +11,34 @@ using Newtonsoft.Json;
 
 namespace App_Control_Parental_Demo.Models
 {
-    class LoginModelo
+    class UsuariosModelo
     {
-        public partial class LoginRequest
+        public partial class AltaUsuarioRequest
         {
-            public string Usuario { get; set; }
+            public string CorreoElectronico { get; set; }
             public string Password { get; set; }
+            public string Nombre { get; set; }
+            public string SegundoNombre { get; set; }
+            public string ApellidoPaterno { get; set; }
+            public string ApellidoMaterno { get; set; }
+            public int Edad { get; set; }
+            public string Telefono { get; set; }
         }
 
-        public partial class LoginResponse
+        public partial class AltaUsuarioResponse
         {
             public string CodigoRespuesta { get; set; }
             public string Mensaje { get; set; }
         }
 
-        public static LoginResponse LoginCheckLock(string username, string password)
+        public static AltaUsuarioResponse AltaUsuarioCheckLock(string correoElectronico, string password, string nombre
+                                                                , string segundoNombre, string apellidoPaterno, string apellidoMaterno, int edad
+                                                                , string telefono)
         {
-            LoginRequest oRequest = new LoginRequest();
-            LoginResponse oResponse = new LoginResponse();
+            AltaUsuarioRequest oRequest = new AltaUsuarioRequest();
+            AltaUsuarioResponse oResponse = new AltaUsuarioResponse();
             //string urlToken = ConfigurationManager.AppSettings["urlToken"].ToString();
-            string urlAPI = "http://13.59.215.98:8081/:8081/api/Login";
+            string urlAPI = "http://13.59.215.98:8081/:8081/api/Usuarios";
 
             string TokenApi = string.Empty;
             string RespCode = string.Empty;
@@ -42,8 +50,14 @@ namespace App_Control_Parental_Demo.Models
 
                 //GrabaLog("Token API: " + TokenApi, "API");
 
-                oRequest.Usuario = username;
+                oRequest.CorreoElectronico = correoElectronico;
                 oRequest.Password = password;
+                oRequest.Nombre = nombre;
+                oRequest.SegundoNombre = segundoNombre;
+                oRequest.ApellidoPaterno = apellidoPaterno;
+                oRequest.ApellidoMaterno = apellidoMaterno;
+                oRequest.Edad = edad;
+                oRequest.Telefono = telefono;
 
                 jsonRequestMessage = JsonConvert.SerializeObject(oRequest);
 
@@ -69,19 +83,19 @@ namespace App_Control_Parental_Demo.Models
                             StreamReader strReader = new StreamReader(stream);
                             jsonResponseMessage = strReader.ReadToEnd();
 
-                            LoginResponse oJsonResponse = JsonConvert.DeserializeObject<LoginResponse>(jsonResponseMessage);
+                            AltaUsuarioResponse oJsonResponse = JsonConvert.DeserializeObject<AltaUsuarioResponse>(jsonResponseMessage);
                             if (oJsonResponse != null)
                             {
                                 //Respuesta del API
                                 oResponse.CodigoRespuesta = oJsonResponse.CodigoRespuesta;
                                 oResponse.Mensaje = oJsonResponse.Mensaje;
-                              
+
                             }
                             else
                             {
                                 oResponse.CodigoRespuesta = "96";
                                 oResponse.Mensaje = "No hay parametros en la respuesta.";
-                                
+
                             }
                         }
                         else
@@ -89,7 +103,7 @@ namespace App_Control_Parental_Demo.Models
 
                             oResponse.CodigoRespuesta = "06";
                             oResponse.Mensaje = response.ReasonPhrase;
-                            
+
                         }
                     }
                 }
@@ -98,7 +112,7 @@ namespace App_Control_Parental_Demo.Models
 
                     oResponse.CodigoRespuesta = "06";
                     oResponse.Mensaje = "Error en el mensaje de la petición.";
-                    
+
                 }
 
             }
@@ -109,15 +123,15 @@ namespace App_Control_Parental_Demo.Models
                     //ERROR de Excepcion.                    
                     oResponse.CodigoRespuesta = "06";
                     oResponse.Mensaje = ex.InnerException.Message;
-                   
+
                 }
                 else
                 {
                     oResponse.CodigoRespuesta = "06";
-                    oResponse.Mensaje = ex.Message;                    
+                    oResponse.Mensaje = ex.Message;
                 }
             }
-            
+
             return oResponse;
         }
     }

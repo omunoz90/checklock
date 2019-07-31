@@ -17,6 +17,7 @@
                     <Entry x:Name="entry_SegundoNombre" Placeholder="Segundo Nombre" PlaceholderColor="White"/>
                     <Entry x:Name="entry_ApellidoPaterno" Placeholder="Apellido Paterno" PlaceholderColor="White" />
                     <Entry x:Name="entry_ApellidoMaterno" Placeholder="Apellido Materno" PlaceholderColor="White"/>
+                    <Entry x:Name="entry_Edad" Placeholder="Edad" PlaceholderColor="White" Keyboard="Numeric"/>
                     <Entry x:Name="entry_Correo" Placeholder="Correo" PlaceholderColor="White"/>
                     <Entry x:Name="entry_ConfirmaCorreo" Placeholder="Confirmar correo" PlaceholderColor="White"/>
                     <Entry x:Name="entry_RegPass" Placeholder="Contraseña" PlaceholderColor="White"/>                    
