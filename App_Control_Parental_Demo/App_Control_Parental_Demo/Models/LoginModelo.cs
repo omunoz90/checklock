@@ -15,7 +15,9 @@ namespace App_Control_Parental_Demo.Models
     {
         public partial class LoginRequest
         {
+            [JsonProperty(PropertyName = "Usuario")]
             public string Usuario { get; set; }
+            [JsonProperty(PropertyName = "Password")]
             public string Password { get; set; }
         }
 
@@ -25,12 +27,25 @@ namespace App_Control_Parental_Demo.Models
             public string Mensaje { get; set; }
         }
 
-        public static LoginResponse LoginCheckLock(string username, string password)
+        public static LoginResponse LoginCheckLock2(string username, string password)
+        {
+            LoginRequest oRequest = new LoginRequest();
+            LoginResponse oResponse = new LoginResponse();
+            string jsonRequestMessage = string.Empty;
+            oRequest.Usuario = username;
+            oRequest.Password = password;
+            jsonRequestMessage = JsonConvert.SerializeObject(oRequest);
+            oResponse.CodigoRespuesta = "06";
+            oResponse.Mensaje = jsonRequestMessage;
+            return oResponse;
+        }
+
+            public static LoginResponse LoginCheckLock(string username, string password)
         {
             LoginRequest oRequest = new LoginRequest();
             LoginResponse oResponse = new LoginResponse();
             //string urlToken = ConfigurationManager.AppSettings["urlToken"].ToString();
-            string urlAPI = "http://13.59.215.98:8081/:8081/api/Login";
+            string urlAPI = "http://13.59.215.98:8081/api/Login";
 
             string TokenApi = string.Empty;
             string RespCode = string.Empty;
@@ -47,7 +62,6 @@ namespace App_Control_Parental_Demo.Models
 
                 jsonRequestMessage = JsonConvert.SerializeObject(oRequest);
 
-
                 if (!String.IsNullOrEmpty(jsonRequestMessage))
                 {
                     //Realizamos la llamada al API CellPay Payware.
@@ -56,11 +70,10 @@ namespace App_Control_Parental_Demo.Models
                         HttpRequestMessage request = new HttpRequestMessage()
                         {
                             RequestUri = new Uri(urlAPI),
-                            Method = HttpMethod.Post
+                            Method = HttpMethod.Post,
+                            Content = new StringContent(jsonRequestMessage, Encoding.UTF8, "application/json")
                         };
-                        request.Content = new StringContent(jsonRequestMessage, Encoding.UTF8, "text/json");
-                        request.Headers.Clear();
-                        request.Content.Headers.ContentType = new MediaTypeHeaderValue("text/json");
+                        request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                         HttpResponseMessage response = client.SendAsync(request).Result;
                         if (response.IsSuccessStatusCode)
                         {

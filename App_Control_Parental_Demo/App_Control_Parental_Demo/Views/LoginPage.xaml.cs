@@ -21,7 +21,9 @@ namespace App_Control_Parental_Demo
         {
 
             LoginResponse oResponse = new LoginResponse();
-            oResponse = LoginCheckLock(entry_Usuario.Text, entry_Pass.Text);
+            DisplayAlert("Usuario", entry_Usuario.Text, "Ok");
+            DisplayAlert("Pass", entry_Pass.Text, "Ok");
+            oResponse = LoginCheckLock2(entry_Usuario.Text, entry_Pass.Text);
 
             if (oResponse.CodigoRespuesta == "00")
             {

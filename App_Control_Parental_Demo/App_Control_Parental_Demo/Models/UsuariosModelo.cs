@@ -15,13 +15,28 @@ namespace App_Control_Parental_Demo.Models
     {
         public partial class AltaUsuarioRequest
         {
+            [JsonProperty(PropertyName = "CorreoElectronico")]
             public string CorreoElectronico { get; set; }
+
+            [JsonProperty(PropertyName = "Password")]
             public string Password { get; set; }
+
+            [JsonProperty(PropertyName = "Nombre")]
             public string Nombre { get; set; }
+
+            [JsonProperty(PropertyName = "SegundoNombre")]
             public string SegundoNombre { get; set; }
+
+            [JsonProperty(PropertyName = "ApellidoPaterno")]
             public string ApellidoPaterno { get; set; }
+
+            [JsonProperty(PropertyName = "ApellidoMaterno")]
             public string ApellidoMaterno { get; set; }
+
+            [JsonProperty(PropertyName = "Edad")]
             public int Edad { get; set; }
+
+            [JsonProperty(PropertyName = "Telefono")]
             public string Telefono { get; set; }
         }
 
@@ -38,7 +53,7 @@ namespace App_Control_Parental_Demo.Models
             AltaUsuarioRequest oRequest = new AltaUsuarioRequest();
             AltaUsuarioResponse oResponse = new AltaUsuarioResponse();
             //string urlToken = ConfigurationManager.AppSettings["urlToken"].ToString();
-            string urlAPI = "http://13.59.215.98:8081/:8081/api/Usuarios";
+            string urlAPI = "http://13.59.215.98:8081/api/Usuarios";
 
             string TokenApi = string.Empty;
             string RespCode = string.Empty;
@@ -73,7 +88,6 @@ namespace App_Control_Parental_Demo.Models
                             Method = HttpMethod.Post
                         };
                         request.Content = new StringContent(jsonRequestMessage, Encoding.UTF8, "text/json");
-                        request.Headers.Clear();
                         request.Content.Headers.ContentType = new MediaTypeHeaderValue("text/json");
                         HttpResponseMessage response = client.SendAsync(request).Result;
                         if (response.IsSuccessStatusCode)
