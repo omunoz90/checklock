@@ -11,13 +11,13 @@ using Newtonsoft.Json;
 
 namespace App_Control_Parental_Demo.Models
 {
-    class LoginModelo
+    public class LoginModelo
     {
+        public const string Comillas = "\"";
+
         public partial class LoginRequest
-        {
-            [JsonProperty(PropertyName = "Usuario")]
+        {            
             public string Usuario { get; set; }
-            [JsonProperty(PropertyName = "Password")]
             public string Password { get; set; }
         }
 
@@ -27,20 +27,21 @@ namespace App_Control_Parental_Demo.Models
             public string Mensaje { get; set; }
         }
 
-        public static LoginResponse LoginCheckLock2(string username, string password)
+        public LoginResponse LoginCheckLock2(string username, string password)
         {
-            LoginRequest oRequest = new LoginRequest();
+        
             LoginResponse oResponse = new LoginResponse();
             string jsonRequestMessage = string.Empty;
-            oRequest.Usuario = username;
-            oRequest.Password = password;
-            jsonRequestMessage = JsonConvert.SerializeObject(oRequest);
+            jsonRequestMessage = "{" + Comillas + "Usuario" + Comillas + ":" + Comillas + username + Comillas + ","
+                                     + Comillas + "Password" + Comillas + ":" + Comillas + password + Comillas + "}";
+
+
             oResponse.CodigoRespuesta = "06";
             oResponse.Mensaje = jsonRequestMessage;
             return oResponse;
         }
 
-            public static LoginResponse LoginCheckLock(string username, string password)
+        public LoginResponse LoginCheckLock(string username, string password)
         {
             LoginRequest oRequest = new LoginRequest();
             LoginResponse oResponse = new LoginResponse();
@@ -56,11 +57,12 @@ namespace App_Control_Parental_Demo.Models
                 //Sacar Token para la llamada a API CellPay Payware.
 
                 //GrabaLog("Token API: " + TokenApi, "API");
+                jsonRequestMessage = "{" + Comillas + "Usuario" + Comillas + ":" + Comillas + username + Comillas + ","
+                                         + Comillas + "Password" + Comillas + ":" + Comillas + password + Comillas + "}";
+                //oRequest.Usuario = username;
+                //oRequest.Password = password;
 
-                oRequest.Usuario = username;
-                oRequest.Password = password;
-
-                jsonRequestMessage = JsonConvert.SerializeObject(oRequest);
+                //jsonRequestMessage = JsonConvert.SerializeObject(oRequest);
 
                 if (!String.IsNullOrEmpty(jsonRequestMessage))
                 {
@@ -88,13 +90,13 @@ namespace App_Control_Parental_Demo.Models
                                 //Respuesta del API
                                 oResponse.CodigoRespuesta = oJsonResponse.CodigoRespuesta;
                                 oResponse.Mensaje = oJsonResponse.Mensaje;
-                              
+
                             }
                             else
                             {
                                 oResponse.CodigoRespuesta = "96";
                                 oResponse.Mensaje = "No hay parametros en la respuesta.";
-                                
+
                             }
                         }
                         else
@@ -102,7 +104,7 @@ namespace App_Control_Parental_Demo.Models
 
                             oResponse.CodigoRespuesta = "06";
                             oResponse.Mensaje = response.ReasonPhrase;
-                            
+
                         }
                     }
                 }
@@ -111,7 +113,7 @@ namespace App_Control_Parental_Demo.Models
 
                     oResponse.CodigoRespuesta = "06";
                     oResponse.Mensaje = "Error en el mensaje de la petición.";
-                    
+
                 }
 
             }
@@ -122,15 +124,15 @@ namespace App_Control_Parental_Demo.Models
                     //ERROR de Excepcion.                    
                     oResponse.CodigoRespuesta = "06";
                     oResponse.Mensaje = ex.InnerException.Message;
-                   
+
                 }
                 else
                 {
                     oResponse.CodigoRespuesta = "06";
-                    oResponse.Mensaje = ex.Message;                    
+                    oResponse.Mensaje = ex.Message;
                 }
             }
-            
+
             return oResponse;
         }
     }

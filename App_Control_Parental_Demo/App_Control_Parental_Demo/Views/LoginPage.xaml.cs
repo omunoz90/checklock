@@ -2,7 +2,7 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static App_Control_Parental_Demo.Models.LoginModelo;
+using App_Control_Parental_Demo.Models;
 
 namespace App_Control_Parental_Demo
 {
@@ -13,17 +13,14 @@ namespace App_Control_Parental_Demo
 		{
 			InitializeComponent ();
             btnRegistro.Clicked += BtnRegistro_Clicked;
-            btnLogin.Clicked += BtnLogin_Clicked;
-
+            btnLogin.Clicked += BtnLogin_Clicked;           
         }
                
-        private void BtnLogin_Clicked(object sender, EventArgs e)
+        public void BtnLogin_Clicked(object sender, EventArgs e)
         {
-
-            LoginResponse oResponse = new LoginResponse();
-            DisplayAlert("Usuario", entry_Usuario.Text, "Ok");
-            DisplayAlert("Pass", entry_Pass.Text, "Ok");
-            oResponse = LoginCheckLock2(entry_Usuario.Text, entry_Pass.Text);
+            LoginModelo oProceso = new LoginModelo();        
+            LoginModelo.LoginResponse oResponse = new LoginModelo.LoginResponse();           
+            oResponse = oProceso.LoginCheckLock(entry_Usuario.Text, entry_Pass.Text);
 
             if (oResponse.CodigoRespuesta == "00")
             {

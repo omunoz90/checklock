@@ -11,8 +11,10 @@ using Newtonsoft.Json;
 
 namespace App_Control_Parental_Demo.Models
 {
-    class UsuariosModelo
+    public class UsuariosModelo
     {
+        public const string Comillas = "\"";
+
         public partial class AltaUsuarioRequest
         {
             [JsonProperty(PropertyName = "CorreoElectronico")]
@@ -46,7 +48,7 @@ namespace App_Control_Parental_Demo.Models
             public string Mensaje { get; set; }
         }
 
-        public static AltaUsuarioResponse AltaUsuarioCheckLock(string correoElectronico, string password, string nombre
+        public AltaUsuarioResponse AltaUsuarioCheckLock(string correoElectronico, string password, string nombre
                                                                 , string segundoNombre, string apellidoPaterno, string apellidoMaterno, int edad
                                                                 , string telefono)
         {
@@ -74,7 +76,15 @@ namespace App_Control_Parental_Demo.Models
                 oRequest.Edad = edad;
                 oRequest.Telefono = telefono;
 
-                jsonRequestMessage = JsonConvert.SerializeObject(oRequest);
+                //jsonRequestMessage = JsonConvert.SerializeObject(oRequest);
+                jsonRequestMessage = "{" + Comillas + "CorreoElectronico" + Comillas + ":" + Comillas + correoElectronico + Comillas + ","
+                                   + Comillas + "Password" + Comillas + ":" + Comillas + password + Comillas + ","
+                                   + Comillas + "Nombre" + Comillas + ":" + Comillas + nombre + Comillas + ","
+                                   + Comillas + "SegundoNombre" + Comillas + ":" + Comillas + segundoNombre + Comillas + ","
+                                   + Comillas + "ApellidoPaterno" + Comillas + ":" + Comillas + apellidoPaterno + Comillas + ","
+                                   + Comillas + "ApellidoMaterno" + Comillas + ":" + Comillas + apellidoMaterno + Comillas + ","
+                                   + Comillas + "Edad" + Comillas + ":" + edad.ToString() + ","
+                                   + Comillas + "Telefono" + Comillas + ":" + Comillas + telefono + Comillas + "}";
 
 
                 if (!String.IsNullOrEmpty(jsonRequestMessage))

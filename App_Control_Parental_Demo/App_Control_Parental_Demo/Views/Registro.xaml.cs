@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static App_Control_Parental_Demo.Models.UsuariosModelo;
+using App_Control_Parental_Demo.Models;
 
 namespace App_Control_Parental_Demo.Views
 {
@@ -21,8 +21,9 @@ namespace App_Control_Parental_Demo.Views
 
         private void BtnRegistrar_Clicked(object sender, EventArgs e)
         {
-            AltaUsuarioResponse oResponse = new AltaUsuarioResponse();
-            oResponse = AltaUsuarioCheckLock(entry_Correo.Text, entry_RegPass.Text, entry_Nombre.Text
+            UsuariosModelo oProceso = new UsuariosModelo();
+            UsuariosModelo.AltaUsuarioResponse oResponse = new UsuariosModelo.AltaUsuarioResponse();
+            oResponse = oProceso.AltaUsuarioCheckLock(entry_Correo.Text, entry_RegPass.Text, entry_Nombre.Text
                                             , entry_SegundoNombre.Text, entry_ApellidoPaterno.Text, entry_ApellidoMaterno.Text
                                             , Convert.ToInt32(entry_Edad.Text), "");
 
