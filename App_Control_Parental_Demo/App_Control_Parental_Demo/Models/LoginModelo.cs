@@ -27,26 +27,26 @@ namespace App_Control_Parental_Demo.Models
             public string Mensaje { get; set; }
         }
 
-        public LoginResponse LoginCheckLock2(string username, string password)
-        {
+        //public LoginResponse LoginCheckLock2(string username, string password)
+        //{
         
-            LoginResponse oResponse = new LoginResponse();
-            string jsonRequestMessage = string.Empty;
-            jsonRequestMessage = "{" + Comillas + "Usuario" + Comillas + ":" + Comillas + username + Comillas + ","
-                                     + Comillas + "Password" + Comillas + ":" + Comillas + password + Comillas + "}";
+        //    LoginResponse oResponse = new LoginResponse();
+        //    string jsonRequestMessage = string.Empty;
+        //    jsonRequestMessage = "{" + Comillas + "Usuario" + Comillas + ":" + Comillas + username + Comillas + ","
+        //                             + Comillas + "Password" + Comillas + ":" + Comillas + password + Comillas + "}";
 
 
-            oResponse.CodigoRespuesta = "06";
-            oResponse.Mensaje = jsonRequestMessage;
-            return oResponse;
-        }
+        //    oResponse.CodigoRespuesta = "06";
+        //    oResponse.Mensaje = jsonRequestMessage;
+        //    return oResponse;
+        //}
 
         public LoginResponse LoginCheckLock(string username, string password)
         {
             LoginRequest oRequest = new LoginRequest();
             LoginResponse oResponse = new LoginResponse();
             //string urlToken = ConfigurationManager.AppSettings["urlToken"].ToString();
-            string urlAPI = "http://13.59.215.98:8081/api/Login";
+            string urlAPI = "http://3.19.14.213:8081/api/Login";
 
             string TokenApi = string.Empty;
             string RespCode = string.Empty;

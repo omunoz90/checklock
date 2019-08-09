@@ -55,7 +55,7 @@ namespace App_Control_Parental_Demo.Models
             AltaUsuarioRequest oRequest = new AltaUsuarioRequest();
             AltaUsuarioResponse oResponse = new AltaUsuarioResponse();
             //string urlToken = ConfigurationManager.AppSettings["urlToken"].ToString();
-            string urlAPI = "http://13.59.215.98:8081/api/Usuarios";
+            string urlAPI = "http://3.19.14.213:8081/api/Usuarios";
 
             string TokenApi = string.Empty;
             string RespCode = string.Empty;

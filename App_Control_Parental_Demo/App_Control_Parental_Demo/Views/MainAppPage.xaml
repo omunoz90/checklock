@@ -4,19 +4,84 @@
              x:Class="App_Control_Parental_Demo.Views.MainAppPage"
             BackgroundColor="DeepSkyBlue">
   <!--Pages can be added as references or inline-->
-    <ContentPage Title="Aplicaciones">
-        <StackLayout>
-            <Label Text="Aplicaciones" FontSize="15" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
-        </StackLayout>
+    <ContentPage Title="Aplicaciones" x:Name="contentApps">
+        <ListView x:Name="lstApps" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text ="{Binding ItemArray[0]}"  HeightRequest="20" WidthRequest="20" TextColor="White" ></Label>
+                            <!--<Image HeightRequest="20" WidthRequest="20" Source="{Binding Icon}"></Image>-->
+                            <Switch x:Name="btnSwitch" HeightRequest="20" WidthRequest="20"></Switch>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--<Grid>
+            <BoxView Color="DeepSkyBlue"/>
+            <Grid x:Name="dgAplicaciones">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>                
+
+                <StackLayout Grid.Column="0" Padding="20,20" >
+                    <Label x:Name="Aplicacion" Text="Aplicación" TextColor="White" HorizontalOptions="Center"/>                    
+                </StackLayout>
+
+                <StackLayout Grid.Column="1" Padding="20,20">
+                    <Label x:Name="Accion" Text="Acción" TextColor="White" HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="1" Padding="20,20">
+                    <Switch x:Name="btnSwitch" IsToggled="False" HorizontalOptions="EndAndExpand"
+               VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Grid>
+        </Grid>-->
     </ContentPage>
     <ContentPage Title="Opciones" >
         <StackLayout>
-            <Label Text="Opciones" FontSize="15" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            <Grid>
+                <BoxView Color="DeepSkyBlue"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Padding="20,20" >
+                        <Button x:Name="btnSalir" Text="Salir" BackgroundColor="White" BorderRadius="20" TextColor="Black"/>
+                    </StackLayout>
+
+                </Grid>
+            </Grid>
+          
         </StackLayout>
     </ContentPage>
     <ContentPage Title="Acerca de">
-        <StackLayout>
-            <Label Text="Acerca de" FontSize="15" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+        <StackLayout>            
+                <Grid>
+                    <BoxView Color="DeepSkyBlue"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0" Padding="20,20" >
+                            <Label Text="Demo realizada para proyecto escolar." FontSize="15" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>                            
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Padding="20,20" >
+                            <Label Text="Todos los derechos reservados." FontSize="15" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                        </StackLayout>                       
+
+                    </Grid>
+                </Grid>              
         </StackLayout>
     </ContentPage>
 </TabbedPage>
